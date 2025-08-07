@@ -1,14 +1,31 @@
+'use client'
+
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import PokemonCard from '../pokemonCard'
+import ButtonGroup from '../buttonGroup'
+import { MainContainer, ContentWrapper, Title, Subtitle } from './styles'
+
 export default function Home() {
+  const [id, setId] = useState(1)
+  const { data: pokemon, isLoading, error } = useQuery({
+    queryKey: ['pokemon', id],
+    queryFn: () => fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      .then(res => res.json())
+  })
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-6xl font-bold text-gray-900 mb-6">
-          Hello there!
-        </h1>
-        <p className="text-xl text-gray-600 mb-8">
-          Please hire me
-        </p>
-      </div>
-    </main>
+    <MainContainer>
+      <ContentWrapper>
+        <Title>Hello there!</Title>
+        <Subtitle>Please hire me</Subtitle>
+        <PokemonCard 
+          isLoading={isLoading} 
+          data={pokemon} 
+          error={error}
+        />
+        <ButtonGroup handleSetId={setId} />
+      </ContentWrapper>
+    </MainContainer>
   )
-} 
+}

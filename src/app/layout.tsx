@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import ReactQueryProvider from './ReactQueryProvider'
 
 export const metadata: Metadata = {
-  title: 'My Next.js App',
-  description: 'A single page application built with Next.js and TypeScript',
+  title: 'Pedro Hardeman',
+  description: 'Portfolio and playground', 
+  icons: {
+    icon: '/favicon-32x32.png',
+    shortcut: '/favicon-16x16.png',
+    apple: '/favicon-16x16.png',
+  },
 }
 
 export default function RootLayout({
@@ -16,7 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ReactQueryProvider>
+          {children}
+        </ReactQueryProvider>
+      </body>
     </html>
   )
-} 
+}
