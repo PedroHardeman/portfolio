@@ -3,7 +3,7 @@ import ReactQueryProvider from './ReactQueryProvider'
 
 export const metadata: Metadata = {
   title: 'Pedro Hardeman',
-  description: 'Portfolio and playground', 
+  description: 'Portfolio and playground',
   icons: {
     icon: '/favicon-32x32.png',
     shortcut: '/favicon-16x16.png',
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ margin: 0, height: '100vh' }}>
         <ReactQueryProvider>
           {children}
         </ReactQueryProvider>
