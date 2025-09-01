@@ -29,6 +29,17 @@ export const HeroBackground = styled(motion.div)`
   z-index: 1;
 `;
 
+export const AnimatedHeroBackground = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23333" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+  opacity: 0.1;
+  z-index: 1;
+`;
+
 export const HeroContent = styled(motion.div)`
   text-align: center;
   z-index: 2;
@@ -84,6 +95,15 @@ export const SectionTitle = styled(motion.h2)`
   text-align: center;
   margin-bottom: 3rem;
   color: #1a1a1a;
+  letter-spacing: -0.02em;
+`;
+
+export const WhiteSectionTitle = styled(motion.h2)`
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
   letter-spacing: -0.02em;
 `;
 
@@ -203,11 +223,12 @@ export const FAQQuestion = styled.button<{ $isOpen: boolean }>`
   }
 `;
 
-export const FAQAnswer = styled(motion.div)`
+export const FAQAnswer = styled(motion.div)<{ $isOpen: boolean }>`
   padding: 0 30px;
   color: #666;
   line-height: 1.7;
   font-size: 1rem;
+  padding-bottom: ${({ $isOpen }) => $isOpen ? '25px' : '0'};
 `;
 
 export const Footer = styled.footer`

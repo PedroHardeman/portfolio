@@ -1,35 +1,29 @@
 'use client'
 
-import Topbar from '../../topbar'
-import { PageContainer, SectionTitle, SectionContent } from '../styles'
+import { SectionTitle, SectionContent, TechDescription } from './styles'
+import { useTechStack } from '@/hooks'
 
 export default function TechStack() {
+  const { techStack } = useTechStack()
+
   return (
     <>
-      <PageContainer>
-        <Topbar />
-        <SectionTitle>Tech Stack</SectionTitle>
-        <SectionContent>
-          <div className="tech-grid">
-            <div className="tech-item">
-              <h3>Frontend</h3>
-              <p>React, Next.js, TypeScript, Styled Components</p>
+      <SectionTitle>Tech Stack</SectionTitle>
+      <SectionContent>
+        <div className="tech-grid">
+          {techStack.map((category) => (
+            <div key={category.id} className="tech-item">
+              <h3>{category.title}</h3>
+              <p>{category.technologies.join(', ')}</p>
+              {category.description && (
+                <TechDescription>
+                  {category.description}
+                </TechDescription>
+              )}
             </div>
-            <div className="tech-item">
-              <h3>Backend</h3>
-              <p>Node.js, Express, Python, Django</p>
-            </div>
-            <div className="tech-item">
-              <h3>Database</h3>
-              <p>PostgreSQL, MongoDB, Redis</p>
-            </div>
-            <div className="tech-item">
-              <h3>Tools</h3>
-              <p>Git, Docker, AWS, CI/CD</p>
-            </div>
-          </div>
-        </SectionContent>
-      </PageContainer>
+          ))}
+        </div>
+      </SectionContent>
     </>
   )
 }

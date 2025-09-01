@@ -1,30 +1,23 @@
 'use client'
 
-import Topbar from '../../topbar'
-import { PageContainer, SectionTitle, SectionContent } from '../styles'
+import { SectionTitle, SectionContent } from './styles'
+import { useAboutContent } from '@/hooks'
 
 export default function AboutMe() {
+  const { aboutSections } = useAboutContent()
+
   return (
     <>
-      <PageContainer>
-        <Topbar />
-        <SectionTitle>About Me</SectionTitle>
-        <SectionContent>
-          <div className="about-content">
-            <p>
-              {`I'm a passionate full-stack developer with a love for creating beautiful,
-              functional, and user-friendly applications. With experience in both frontend
-              and backend development, I enjoy bringing ideas to life through clean code
-              and intuitive design.`}
+      <SectionTitle>About Me</SectionTitle>
+      <SectionContent>
+        <div className="about-content">
+          {aboutSections.map((section) => (
+            <p key={section.id}>
+              {section.content}
             </p>
-            <p>
-              {`When I'm not coding, you can find me exploring new technologies,
-              contributing to open-source projects, or sharing knowledge with the
-              developer community.`}
-            </p>
-          </div>
-        </SectionContent>
-      </PageContainer>
+          ))}
+        </div>
+      </SectionContent>
     </>
   )
 }

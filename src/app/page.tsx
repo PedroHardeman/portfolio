@@ -1,35 +1,40 @@
 'use client'
 
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import PokemonCard from '../pokemonCard'
-import ButtonGroup from '../buttonGroup'
-import Topbar from '../topbar'
+import React from 'react';
+import Topbar from './topbar'
 import { MainContainer, ContentWrapper, Title, Subtitle } from './styles'
+import AboutMe from './about-me/page'
+import Projects from './projects/page'
+import TechStack from './tech-stack/page'
+import { useNavigation } from '@/hooks'
 
 export default function Home() {
-  const [id, setId] = useState(1)
-  const { data: pokemon, isLoading, error } = useQuery({
-    queryKey: ['pokemon', id],
-    queryFn: () => fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then(res => res.json())
-  })
+  const { currentScreen, navigateTo } = useNavigation()
+
+  const renderScreenContent = (screen: string) => {
+    switch (screen) {
+      case 'about-me':
+        return <AboutMe />
+      case 'projects':
+        return <Projects />
+      case 'tech-stack':
+        return <TechStack />
+      default:
+        return (
+          <>
+            <Title>Hello there!</Title>
+            <Subtitle>Please hire me</Subtitle>
+          </>
+        )
+    }
+  }
 
   return (
-    <>
-      <MainContainer>
-        <Topbar />
-        <ContentWrapper>
-          <Title>Hello there!</Title>
-          <Subtitle>Please hire me</Subtitle>
-          <PokemonCard
-            isLoading={isLoading}
-            data={pokemon}
-            error={error}
-          />
-          <ButtonGroup handleSetId={setId} />
-        </ContentWrapper>
-      </MainContainer>
-    </>
+    <MainContainer>
+      <Topbar setCurrentScreen={navigateTo} />
+      <ContentWrapper>
+        {renderScreenContent(currentScreen)}
+      </ContentWrapper>
+    </MainContainer>
   )
 }

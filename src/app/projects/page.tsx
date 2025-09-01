@@ -1,46 +1,33 @@
 'use client'
 
-import Topbar from '../../topbar'
-import { PageContainer, SectionTitle, SectionContent } from '../styles'
+import { SectionTitle, SectionContent, ProjectsGrid, ProjectCard, ProjectTags } from './styles'
+import { useProjects } from '@/hooks'
 
 export default function Projects() {
+  const { projects } = useProjects()
+
   return (
     <>
-      <PageContainer>
-        <Topbar />
-        <SectionTitle>Projects</SectionTitle>
-        <SectionContent>
-          <div className="projects-grid">
-            <div className="project-card">
-              <h3>E-Commerce Platform</h3>
-              <p>A full-stack e-commerce solution with React, Node.js, and PostgreSQL</p>
-              <div className="project-tags">
-                <span>React</span>
-                <span>Node.js</span>
-                <span>PostgreSQL</span>
-              </div>
-            </div>
-            <div className="project-card">
-              <h3>Task Management App</h3>
-              <p>A collaborative task management application with real-time updates</p>
-              <div className="project-tags">
-                <span>Next.js</span>
-                <span>TypeScript</span>
-                <span>Socket.io</span>
-              </div>
-            </div>
-            <div className="project-card">
-              <h3>Portfolio Website</h3>
-              <p>A modern portfolio website built with Next.js and styled-components</p>
-              <div className="project-tags">
-                <span>Next.js</span>
-                <span>Styled Components</span>
-                <span>TypeScript</span>
-              </div>
-            </div>
-          </div>
-        </SectionContent>
-      </PageContainer>
+      <SectionTitle>Projects</SectionTitle>
+      <SectionContent>
+        <ProjectsGrid>
+          {projects.map((project) => (
+            <ProjectCard key={project.id} onClick={() => {
+              if (project.link) {
+                window.location.href = `http://localhost:3000/${project.link}`
+              }
+            }}>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <ProjectTags>
+                {project.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </ProjectTags>
+            </ProjectCard>
+          ))}
+        </ProjectsGrid>
+      </SectionContent>
     </>
   )
 }

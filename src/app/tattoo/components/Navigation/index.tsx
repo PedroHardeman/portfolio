@@ -44,6 +44,7 @@ export default function Navigation({ onMenuClick }: NavigationProps) {
 
   return (
     <NavContainer
+      $scrolled={scrolled}
       variants={{
         hidden: { y: -100, opacity: 0 },
         visible: {
@@ -54,10 +55,6 @@ export default function Navigation({ onMenuClick }: NavigationProps) {
       }}
       initial="hidden"
       animate="visible"
-      style={{
-        background: scrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)',
-        boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.1)' : 'none'
-      }}
     >
       <NavContent>
         <Logo

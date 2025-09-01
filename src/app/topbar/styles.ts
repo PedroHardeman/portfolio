@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 export const NavContainer = styled(motion.nav)<{ $scrolled: boolean }>`
   background: ${({ $scrolled }) => $scrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)'};
@@ -13,7 +13,7 @@ export const NavContainer = styled(motion.nav)<{ $scrolled: boolean }>`
   border-bottom: 1px solid rgba(0,0,0,0.1);
   box-shadow: ${({ $scrolled }) => $scrolled ? '0 4px 20px rgba(0,0,0,0.1)' : 'none'};
   transition: all 0.3s ease;
-`;
+`
 
 export const NavContent = styled.div`
   max-width: 1200px;
@@ -22,18 +22,19 @@ export const NavContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 export const Logo = styled(motion.div)`
   font-size: 1.8rem;
   font-weight: 900;
   color: #1a1a1a;
   letter-spacing: -0.02em;
+  cursor: pointer;
   
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
-`;
+`
 
 export const NavMenu = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ export const NavMenu = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-`;
+`
 
 export const NavItem = styled(motion.button)`
   color: #1a1a1a;
@@ -73,7 +74,29 @@ export const NavItem = styled(motion.button)`
   &:hover {
     color: #e74c3c;
   }
-`;
+`
+
+export const NavLink = styled.button<{ $isActive?: boolean }>`
+  background: ${({ $isActive }) => $isActive ? 'rgba(0, 0, 0, 0.1)' : 'none'};
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: ${({ $isActive }) => $isActive ? '#111827' : '#4b5563'};
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    color: #111827;
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+`
 
 export const MobileMenuButton = styled(motion.button)`
   display: none;
@@ -93,14 +116,14 @@ export const MobileMenuButton = styled(motion.button)`
   @media (max-width: 768px) {
     display: block;
   }
-`;
+`
 
 export const MobileMenu = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 export const MobileNavItem = styled(motion.button)`
   color: #1a1a1a;
@@ -117,4 +140,4 @@ export const MobileNavItem = styled(motion.button)`
   &:hover {
     color: #e74c3c;
   }
-`;
+`

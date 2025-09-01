@@ -8,10 +8,12 @@ import {
   GlobalContainer,
   HeroSection,
   HeroBackground,
+  AnimatedHeroBackground,
   HeroContent,
   HeroTitle,
   HeroSubtitle,
   SectionTitle,
+  WhiteSectionTitle,
   ContactGrid,
   ContactCard,
   ContactIcon,
@@ -233,7 +235,7 @@ export default function Home() {
                     opacity: openFAQ === index ? 1 : 0
                   }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  style={{ paddingBottom: openFAQ === index ? '25px' : '0' }}
+                  $isOpen={openFAQ === index}
                 >
                   {faq.answer}
                 </FAQAnswer>
@@ -249,7 +251,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <SectionTitle style={{ color: 'white' }}>Gift Card</SectionTitle>
+            <WhiteSectionTitle>Gift Card</WhiteSectionTitle>
             <GiftCardPrice>€50,00 — €1000,00</GiftCardPrice>
             <GiftCardDescription>
               Ultimate gift for tattoolovers! The perfect gift that can be used for all payments at our studio.
@@ -309,7 +311,9 @@ export default function Home() {
         ) : (
           <>
             <HeroSection>
-              <HeroBackground style={{ y: smoothHeroY, opacity: smoothHeroOpacity, scale: smoothHeroScale }} />
+              <AnimatedHeroBackground
+                style={{ y: smoothHeroY, opacity: smoothHeroOpacity, scale: smoothHeroScale }}
+              />
               <HeroContent
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
