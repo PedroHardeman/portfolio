@@ -14,7 +14,7 @@ export default function Projects() {
           {projects.map((project) => (
             <ProjectCard key={project.id} onClick={() => {
               if (project.link) {
-                window.location.href = `http://localhost:3000/${project.link}`
+                window.location.href = `/${project.link}`
               }
             }}>
               <h3>{project.title}</h3>

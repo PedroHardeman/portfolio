@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+export const Body = styled.body`
+  font-family: sans-serif;
+  margin: 0; 
+  height: 100vh;
+`
+
 export const MainContainer = styled.main`
   height: 100%;
   background: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
