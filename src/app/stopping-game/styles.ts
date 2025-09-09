@@ -4,7 +4,7 @@ export const GameContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 2rem;
-  max-width: 1000px;
+  padding: 3rem;
   margin: 0 auto;
   
   @media (max-width: 768px) {

@@ -103,7 +103,7 @@ export const WhiteSectionTitle = styled(motion.h2)`
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
-  color: white;
+  // color: white;
   letter-spacing: -0.02em;
 `;
 
@@ -261,7 +261,7 @@ export const ScreenContent = styled.div`
 
 export const CloseButton = styled(motion.button)`
   position: fixed;
-  bottom: 30px;
+  top: 30px;
   right: 30px;
   width: 60px;
   height: 60px;

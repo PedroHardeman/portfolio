@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
-import ReactQueryProvider from './ReactQueryProvider'
+import ReactQueryProvider from '@/providers/ReactQueryProvider'
+import { MobileMenuProvider } from '@/hooks'
+import AppShell from './AppShell'
 
 export const metadata: Metadata = {
   title: 'Pedro Hardeman',
@@ -11,16 +13,21 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body style={{ margin: 0, height: '100vh', fontFamily: 'sans-serif' }}>
+      <body style={{
+        margin: 0,
+        minHeight: '100dvh',
+        background: 'linear-gradient(to bottom right,#eff6ff,#e0ffe0)',
+        fontFamily: 'sans-serif'
+      }}>
         <ReactQueryProvider>
-          {children}
+          <MobileMenuProvider>
+            <AppShell>
+              {children}
+            </AppShell>
+          </MobileMenuProvider>
         </ReactQueryProvider>
       </body>
     </html >

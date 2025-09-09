@@ -1,72 +1,46 @@
-import { useState } from 'react'
-
 export interface AboutSection {
   id: string
-  title?: string
   content: string
-  order: number
 }
 
-const defaultAboutContent: AboutSection[] = [
-  {
-    id: '1',
-    content: `I'm a passionate full-stack developer with a love for creating beautiful,
-              functional, and user-friendly applications. With experience in both frontend
-              and backend development, I enjoy bringing ideas to life through clean code
-              and intuitive design.`,
-    order: 1
-  },
-  {
-    id: '2',
-    content: `When I'm not coding, you can find me exploring new technologies,
-              contributing to open-source projects, or sharing knowledge with the
-              developer community.`,
-    order: 2
-  }
-]
-
 export const useAboutContent = () => {
-  const [aboutSections, setAboutSections] = useState<AboutSection[]>(defaultAboutContent)
-
-  const sortedSections = aboutSections.sort((a, b) => a.order - b.order)
-
-  const addSection = (section: Omit<AboutSection, 'id'>) => {
-    const newSection: AboutSection = {
-      ...section,
-      id: Date.now().toString()
-    }
-    setAboutSections(prev => [...prev, newSection])
-  }
-
-  const removeSection = (id: string) => {
-    setAboutSections(prev => prev.filter(section => section.id !== id))
-  }
-
-  const updateSection = (id: string, updates: Partial<AboutSection>) => {
-    setAboutSections(prev => prev.map(section => 
-      section.id === id ? { ...section, ...updates } : section
-    ))
-  }
-
-  const reorderSections = (fromIndex: number, toIndex: number) => {
-    setAboutSections(prev => {
-      const newSections = [...prev]
-      const [movedSection] = newSections.splice(fromIndex, 1)
-      newSections.splice(toIndex, 0, movedSection)
-      
-      // Update order values
-      return newSections.map((section, index) => ({
-        ...section,
-        order: index + 1
-      }))
-    })
-  }
+  const aboutSections: AboutSection[] = [
+    {
+      id: `1`,
+      content: `Hi, I'm Pedro!`,
+    },
+    {
+      id: `2`,
+      content: `I'm a Frontend Developer with over 8 years of experience turning ideas into responsive, accessible, and scalable web applications.`,
+    },
+    {
+      id: `3`,
+      content: `I specialize in <b>React</b>, <b>TypeScript</b>, and <b>NextJS</b>. I've worked across industries like marketing, healthcare, travel, and logistics. 
+        Over the years, I've built everything from high-traffic portals to SaaS platforms, always with a focus on clean code, performance, and user experience.`,
+    },
+    {
+      id: `4`,
+      content: `Beyond coding, I enjoy <b>mentoring teammates</b>, and <b>helping teams grow together</b>. 
+        Collaboration is at the heart of how I work, and I believe the best products are built in environments where people share knowledge, 
+        give feedback, and improve continuously.`,
+    },
+    {
+      id: `5`,
+      content: `Currently based in Amsterdam and <b>looking for an opportunity</b> where I can bring my frontend expertise, collaborative mindset, 
+        and passion for building user-first applications.`,
+    },
+    {
+      id: `6`,
+      content: `Don't take just my word for it! Check these totally real recommendations:`,
+    },
+    // {
+    //   id: `6`,
+    //   content: `When I'm not coding, you'll probably find me gaming 🎮 (a lifelong hobby), expending time with my wife and dog, 
+    //     or diving into new techs to see how small details can create big improvements.`,
+    // }
+  ]
 
   return {
-    aboutSections: sortedSections,
-    addSection,
-    removeSection,
-    updateSection,
-    reorderSections
+    aboutSections,
   }
 }

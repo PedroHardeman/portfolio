@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react'
 
 export type ScreenType = 'about-me' | 'projects' | 'tech-stack' | 'stopping-game' | ''

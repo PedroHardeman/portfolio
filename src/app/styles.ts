@@ -1,32 +1,50 @@
 import styled from 'styled-components'
 
-export const Body = styled.body`
-  font-family: sans-serif;
-  margin: 0; 
-  height: 100vh;
-`
+export const SectionContent = styled.div`
+  background: rgba(255, 255, 255, 0.8);
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 2rem auto;
 
-export const MainContainer = styled.main`
-  height: 100%;
-  background: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
+  @media (max-width: 768px) {
+    background: none;
+    box-shadow: none;
+    padding: 2rem;
+    margin: 0 auto;
+  }
 `
-
-export const ContentWrapper = styled.div`
-  text-align: center;
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-`
-
-export const Title = styled.h1`
-  font-size: 3.75rem;
-  font-weight: bold;
-  color: #111827;
-  margin-bottom: 1.5rem;
-`
-
-export const Subtitle = styled.p`
-  font-size: 1.25rem;
+export const SectionParagraph = styled.p`
+  font-size: 1.125rem;
   color: #4b5563;
-  margin-bottom: 2rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+
+export const CarrouselContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 2rem auto;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    width: auto;
+  }
+`
+
+export const SectionRecommendation = styled.div`
+  background: #494949;
+  padding: 3rem 4rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  p {
+   color: white;
+  }
 `

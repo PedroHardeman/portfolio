@@ -28,6 +28,7 @@ export const GalleryTitle = styled(motion.h2)`
 
 export const GalleryGrid = styled.div`
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 30px;
   margin-top: 50px;

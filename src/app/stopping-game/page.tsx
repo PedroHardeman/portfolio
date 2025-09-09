@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { MainContainer, ContentWrapper, Title, Subtitle } from '@/app/styles'
 import {
   GameContainer,
   GameCard,
@@ -107,84 +106,79 @@ export default function StoppingGame() {
   }
 
   return (
-    <MainContainer>
-      <ContentWrapper>
-        <Title>Stopping Game</Title>
-        <Subtitle>Click the button when you think the timer matches the target time!</Subtitle>
+    <GameContainer>
+      <GameCard>
+        <TargetTime>
+          Target: <span>{formatTime(targetTime)}</span>
+        </TargetTime>
 
-        <GameContainer>
-          <GameCard>
-            <TargetTime>
-              Target: <span>{formatTime(targetTime)}</span>
-            </TargetTime>
+        <Timer $isRunning={gameState === 'running'}>
+          {formatTime(currentTime)}
+        </Timer>
 
-            <Timer $isRunning={gameState === 'running'}>
-              {formatTime(currentTime)}
-            </Timer>
+        {gameState === 'waiting' && (
+          <StartButton onClick={startGame}>
+            Start Game
+          </StartButton>
+        )}
 
-            {gameState === 'waiting' && (
-              <StartButton onClick={startGame}>
-                Start Game
-              </StartButton>
-            )}
+        {gameState === 'running' && (
+          <StopButton onClick={stopGame}>
+            STOP NOW!
+          </StopButton>
+        )}
 
-            {gameState === 'running' && (
-              <StopButton onClick={stopGame}>
-                STOP NOW!
-              </StopButton>
-            )}
-
-            {gameState === 'finished' && (
-              <>
-                <ResultCard>
-                  <h3>Your Result</h3>
-                  <p>You clicked at: <strong>{formatTime(clickTime)}</strong></p>
-                  <p>Target was: <strong>{formatTime(targetTime)}</strong></p>
-                  <p>Difference: <strong style={{ color: getScoreColor(difference) }}>
-                    {formatTime(difference)}
-                  </strong></p>
-                  <p style={{
-                    fontSize: '1.2rem',
-                    fontWeight: 'bold',
-                    color: getScoreColor(difference)
-                  }}>
-                    {getScoreMessage(difference)}
-                  </p>
-                </ResultCard>
-
-                <StartButton onClick={startGame}>
-                  Play Again
-                </StartButton>
-              </>
-            )}
-          </GameCard>
-
-          <GameStats>
-            <BestScore>
-              <h3>Best Score</h3>
-              <p>{bestScore === Infinity ? 'No games yet' : formatTime(bestScore)}</p>
-            </BestScore>
-
-            <ScoreDisplay>
-              <h3>Game Statistics</h3>
-              <p>Games Played: {totalGames}</p>
-              <p>Average Score: {totalGames > 0 ? formatTime(averageScore) : 'N/A'}</p>
-            </ScoreDisplay>
-
-            {totalGames > 0 && (
-              <ResetButton onClick={() => {
-                setBestScore(Infinity)
-                setTotalGames(0)
-                setAverageScore(0)
-                setScores([])
-                setGameState('waiting')
+        {gameState === 'finished' && (
+          <>
+            <ResultCard>
+              <h3>Your Result</h3>
+              <p>You clicked at: <strong>{formatTime(clickTime)}</strong></p>
+              <p>Target was: <strong>{formatTime(targetTime)}</strong></p>
+              <p>Difference: <strong style={{ color: getScoreColor(difference) }}>
+                {formatTime(difference)}
+              </strong></p>
+              <p style={{
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                color: getScoreColor(difference)
               }}>
-                Reset Stats
-              </ResetButton>
-            )}
-          </GameStats>
-        </GameContainer>
-      </ContentWrapper>
-    </MainContainer>
+                {getScoreMessage(difference)}
+              </p>
+            </ResultCard>
+
+            <StartButton onClick={startGame}>
+              Play Again
+            </StartButton>
+          </>
+        )}
+      </GameCard>
+
+      <GameStats>
+        <BestScore>
+          <h3>Best Score</h3>
+          <p>{bestScore === Infinity ? 'No games yet' : formatTime(bestScore)}</p>
+        </BestScore>
+
+        <ScoreDisplay>
+          <h3>Game Statistics</h3>
+          <p>Games Played: {totalGames}</p>
+          <p>Average Score: {totalGames > 0 ? formatTime(averageScore) : 'N/A'}</p>
+        </ScoreDisplay>
+
+        {totalGames > 0 && (
+          <ResetButton onClick={() => {
+            setBestScore(Infinity)
+            setTotalGames(0)
+            setAverageScore(0)
+            setTargetTime(0)
+            setCurrentTime(0)
+            setScores([])
+            setGameState('waiting')
+          }}>
+            Reset Stats
+          </ResetButton>
+        )}
+      </GameStats>
+    </GameContainer>
   )
 }

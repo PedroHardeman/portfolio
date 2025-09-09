@@ -1,27 +1,21 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
-export const NavContainer = styled(motion.nav)<{ $scrolled: boolean }>`
-  background: ${({ $scrolled }) => $scrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)'};
-  backdrop-filter: blur(10px);
+export const NavContainer = styled(motion.nav)`
   padding: 20px 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  box-shadow: ${({ $scrolled }) => $scrolled ? '0 4px 20px rgba(0,0,0,0.1)' : 'none'};
   transition: all 0.3s ease;
 `
 
 export const NavContent = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    padding: 0 2rem;
+  }
 `
 
 export const Logo = styled(motion.div)`
@@ -36,6 +30,14 @@ export const Logo = styled(motion.div)`
   }
 `
 
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  @media (max-width: 768px) {
+    width: 250px;
+  }
+`
+
 export const NavMenu = styled.div`
   display: flex;
   gap: 40px;
@@ -45,8 +47,8 @@ export const NavMenu = styled.div`
   }
 `
 
-export const NavItem = styled(motion.button)`
-  color: #1a1a1a;
+export const NavItem = styled(motion.button)<{ $isActive?: boolean }>`
+  color: ${({ $isActive }) => $isActive ? 'rgb(148, 143, 143)' : '#1a1a1a'};
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
@@ -61,9 +63,9 @@ export const NavItem = styled(motion.button)`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: ${({ $isActive }) => $isActive ? '100%' : '0'};
     height: 2px;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: linear-gradient(135deg,rgb(148, 143, 143), rgb(189, 185, 185));
     transition: width 0.3s ease;
   }
   
@@ -72,7 +74,7 @@ export const NavItem = styled(motion.button)`
   }
   
   &:hover {
-    color: #e74c3c;
+    color: rgb(148, 143, 143);
   }
 `
 
